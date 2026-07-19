@@ -1,0 +1,88 @@
+package logicBuilding;
+import java.util.Scanner;
+public class LC2_Loop {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("LC2 - Loop Based Problems");
+	Act1(sc);
+	Act2(sc);
+	Act3(sc);
+	Act4(sc);
+	Act5(sc);
+	sc.close();
+	System.out.println("All 5 Activities Completed");
+}
+public static void Act1(Scanner sc) {
+	System.out.println("ACTIVITY 1");
+	System.out.println("Enter a number");
+	int num = sc.nextInt();
+	int count = 0;
+	while(num!=0) {
+		num /= 10;
+		count++;
+	}
+	System.out.println("Output is "+count+" digits");
+}
+public static void Act2(Scanner sc) {
+	System.out.println("ACTIVITY 2");
+	System.out.println("Enter a number: ");
+	int num = sc.nextInt();
+	int sum = 0;
+	while(num!=0) {
+		int digit = num%10;
+		sum += digit;
+		num /=10;
+	}
+	System.out.println("Sum of all numbers is: "+sum);
+}
+public static void Act3(Scanner sc) {
+	    System.out.println("ACTIVITY 3");
+	    System.out.print("Enter a decimal integer: ");
+	    int num = sc.nextInt();
+	    System.out.print("Binary form: ");
+	    if (num == 0) {
+	        System.out.println(0);
+	        return;
+	    }
+	    int power = 1;
+	    
+	    while (power <= num) power *= 2;
+
+	    power /= 2;
+
+	    while (power != 0) {
+	        if (num - power >= 0) {
+	            System.out.print(1);
+	            num -= power;
+	        } else System.out.print(0);
+
+	        power /= 2;
+	    }
+
+	    System.out.println();
+	}
+public static void Act4(Scanner sc) { // Accepts binary number and returns decimal number
+	System.out.println("ACTIVITY 4");
+	System.out.println("Enter a binary number");
+	int num = sc.nextInt();
+	int power = 1, sum =0;
+	while(num>0) {
+		int digit = num%10;
+		if(digit == 1) sum +=power;
+		power *= 2;
+		num /= 10;
+	}
+	System.out.println(sum);
+}
+public static void Act5(Scanner sc) {
+	System.out.println("ACTIVITY 5");
+	System.out.println("Enter a number");
+	int num = sc.nextInt();
+	for(int i = 2;;i++) {
+		if(num%i==0) {
+			System.out.println("Smallest divisor is: " +i);
+			return;
+		}
+	}
+}
+}
