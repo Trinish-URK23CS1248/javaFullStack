@@ -1,0 +1,190 @@
+package logicBuilding;
+import java.util.*;
+public class LC5_Sorting {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Act1(sc);
+		Act2(sc);
+		Act3(sc);
+		Act4(sc);
+		Act5(sc);
+	}
+	public static void Act1(Scanner sc) {
+		 int[] arr = new int[10];
+		    System.out.println("Enter 10 integers:");
+		    for (int i = 0; i < 10; i++) {
+		        arr[i] = sc.nextInt();
+		    }
+		    // Sort in descending order
+		    for (int i = 0; i < 9; i++) {
+		        for (int j = i + 1; j < 10; j++) {
+		            if (arr[i] < arr[j]) {
+		                int temp = arr[i];
+		                arr[i] = arr[j];
+		                arr[j] = temp;
+		            }
+		        }
+		    }
+
+		    System.out.println("Descending Order:");
+		    for (int i = 0; i < 10; i++) {
+		        System.out.print(arr[i] + " ");
+		    }
+	}
+	public static void Act2(Scanner sc) {
+		System.out.println();
+		 System.out.print("Enter number of elements: ");
+		    int n = sc.nextInt();
+
+		    int[] arr = new int[n];
+
+		    System.out.println("Enter elements:");
+		    for (int i = 0; i < n; i++) {
+		        arr[i] = sc.nextInt();
+		    }
+		    // Sort in ascending order
+		    for (int i = 0; i < n - 1; i++) {
+		        for (int j = i + 1; j < n; j++) {
+		            if (arr[i] > arr[j]) {
+		                int temp = arr[i];
+		                arr[i] = arr[j];
+		                arr[j] = temp;
+		            }
+		        }
+		    }
+
+		    System.out.print("After Ordering: ");
+		    for (int i = 0; i < n; i++) {
+		        System.out.print(arr[i] + " ");
+		    }
+		    // Remove duplicates
+		    int[] result = new int[n];
+		    int size = 0;
+
+		    result[size++] = arr[0];
+
+		    for (int i = 1; i < n; i++) {
+		        if (arr[i] != arr[i - 1]) {
+		            result[size++] = arr[i];
+		        }
+		    }
+
+		    System.out.print("\nOutput Array: ");
+		    for (int i = 0; i < size; i++) {
+		        System.out.print(result[i] + " ");
+		    }
+	}
+	
+	public static void Act3(Scanner sc) {
+		int[] arr = new int[25];
+	    System.out.println("\nEnter 25 integers:");
+	    for (int i = 0; i < 25; i++) {
+	        arr[i] = sc.nextInt();
+	    }
+	    int max = arr[0];
+	    for (int i = 1; i < 25; i++) {
+	        if (arr[i] > max) {
+	            max = arr[i];
+	        }
+	    }
+
+	    int first = -1;
+	    int last = -1;
+	    // Find first and last occurrence
+	    for (int i = 0; i < 25; i++) {
+	        if (arr[i] == max) {
+	            if (first == -1) {
+	                first = i;
+	            }
+	            last = i;
+	        }
+	    }
+
+	    System.out.println("Maximum Value: " + max);
+	    System.out.println("First Position: " + first);
+	    System.out.println("Last Position: " + last);
+	}
+	public static void Act4(Scanner sc) {
+		 int[] arr = new int[15];
+
+		    System.out.println("Enter 15 integers:");
+		    for (int i = 0; i < 15; i++) {
+		        arr[i] = sc.nextInt();
+		    }
+
+		    System.out.print("Enter number to search: ");
+		    int x = sc.nextInt();
+
+		    boolean found = false;
+
+		    for (int i = 0; i < 15; i++) {
+		        if (arr[i] == x) {
+		            System.out.println(x + " found at position " + i);
+		            found = true;
+		        }
+		    }
+
+		    if (!found) {
+		        System.out.println(x + " not found in the array.");
+		    }
+	}
+	public static void Act5(Scanner sc) {
+		 System.out.print("Enter size of first array: ");
+		    int n1 = sc.nextInt();
+
+		    System.out.print("Enter size of second array: ");
+		    int n2 = sc.nextInt();
+
+		    int[] arr1 = new int[n1];
+		    int[] arr2 = new int[n2];
+
+		    System.out.println("Enter elements of first array:");
+		    for (int i = 0; i < n1; i++) {
+		        arr1[i] = sc.nextInt();
+		    }
+
+		    System.out.println("Enter elements of second array:");
+		    for (int i = 0; i < n2; i++) {
+		        arr2[i] = sc.nextInt();
+		    }
+
+		    // Sort first array in descending order
+		    for (int i = 0; i < n1 - 1; i++) {
+		        for (int j = i + 1; j < n1; j++) {
+		            if (arr1[i] < arr1[j]) {
+		                int temp = arr1[i];
+		                arr1[i] = arr1[j];
+		                arr1[j] = temp;
+		            }
+		        }
+		    }
+
+		    // Sort second array in descending order
+		    for (int i = 0; i < n2 - 1; i++) {
+		        for (int j = i + 1; j < n2; j++) {
+		            if (arr2[i] < arr2[j]) {
+		                int temp = arr2[i];
+		                arr2[i] = arr2[j];
+		                arr2[j] = temp;
+		            }
+		        }
+		    }
+
+		    // Merge arrays
+		    int[] merged = new int[n1 + n2];
+		    int k = 0;
+
+		    for (int i = 0; i < n1; i++) {
+		        merged[k++] = arr1[i];
+		    }
+
+		    for (int i = 0; i < n2; i++) {
+		        merged[k++] = arr2[i];
+		    }
+
+		    System.out.println("Merged Array:");
+		    for (int i = 0; i < merged.length; i++) {
+		        System.out.print(merged[i] + " ");
+		    }
+	}
+}
