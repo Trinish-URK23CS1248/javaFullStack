@@ -1,0 +1,124 @@
+package logicBuilding;
+import java.util.Scanner;
+public class LC3_Array{
+	public static void main(String []args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("LC3 - Array based problems");
+		Act1(sc);
+		Act2(sc);
+		Act3(sc);
+		System.out.print("Enter number of students (max 30): ");
+		int N = sc.nextInt();
+		int[] marks = new int[N];
+		System.out.println("Enter the marks:");
+		for (int i = 0; i < N; i++) marks[i] = sc.nextInt();
+		int[] count = Act4(sc, marks);       
+		Act5(sc, count);
+		System.out.println("All 5 Activities completed.");
+	}
+	public static void Act1(Scanner sc) {
+		int num[] = new int[10];
+		System.out.println("Enter 10 ");
+		int sum = 0;
+		for(int i = 0; i <10;i++) {num[i] = sc.nextInt();
+		sum += num[i];
+		}
+		System.out.println("Sum of 10 numbers is :"+sum);
+	}
+	public static void Act2(Scanner sc) {
+		int ar[] = new int[20];
+		System.out.println("Enter 20 Numbers");
+		for(int i =0; i < 20; i++) ar[i] = sc.nextInt();
+		int small = Integer.MAX_VALUE, smaller = Integer.MAX_VALUE, smallest = Integer.MAX_VALUE;
+		int large = Integer.MIN_VALUE , larger = Integer.MIN_VALUE, largest = Integer.MIN_VALUE;
+		for(int i = 0; i < 20; i++) {
+			if(ar[i] < smallest) {
+				small = smaller ;
+				smaller = smallest;
+				smallest = ar[i];
+			}else if(ar[i] > smallest && ar[i] < smaller) {
+				small = smaller;
+				smaller = ar[i];
+			}
+			else if(ar[i]>smaller && ar[i]<small) {
+				small = ar[i];
+			}
+		}
+		for(int i = 0; i < 20; i++) {
+			if(ar[i] > largest) {
+				large = larger ;
+				larger = largest;
+				largest = ar[i];
+			}else if(ar[i] < largest && ar[i] > larger) {
+				large = larger;
+				larger = ar[i];
+			}
+			else if(ar[i] < larger && ar[i] > large) {
+				large = ar[i];
+			}
+		}
+		
+		System.out.print("Smallest:"+smallest+" Smaller:"+smaller+" Small:"+small+"\n");
+		System.out.print("Largest:"+largest+" Larger:"+larger+" Large:"+large+"\n");
+	}
+	public static void Act3(Scanner sc) {
+        int[] arr = new int[10];
+
+        System.out.println("Enter 10 integers:");
+        for (int i = 0; i < 10; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Reverse the array
+        for (int i = 0; i < 5; i++) {
+            int temp = arr[i];
+            arr[i] = arr[9 - i];
+            arr[9 - i] = temp;
+        }
+
+        System.out.println("Reversed Array:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(arr[i] + " ");
+        }
+		System.out.println();
+	}
+	public static int[] Act4(Scanner sc, int[] marks) {
+		 int[] count = new int[101];
+
+	        for (int mark : marks) {
+	            count[mark]++;
+	        }
+
+	        System.out.println("\nCount of each mark:");
+	        for (int i = 0; i <= 100; i++) {
+	            if (count[i] > 0) {
+	                System.out.println(i + " : " + count[i]);
+	            }
+	        }
+
+	        return count;
+	}
+	public static void Act5(Scanner sc, int[] count) {
+		 System.out.println("\nStudents in each range:");
+
+	        System.out.println("0 - 10  : " + sum(count, 0, 10));
+	        System.out.println("11 - 20 : " + sum(count, 11, 20));
+	        System.out.println("21 - 30 : " + sum(count, 21, 30));
+	        System.out.println("31 - 40 : " + sum(count, 31, 40));
+	        System.out.println("41 - 50 : " + sum(count, 41, 50));
+	        System.out.println("51 - 60 : " + sum(count, 51, 60));
+	        System.out.println("61 - 70 : " + sum(count, 61, 70));
+	        System.out.println("71 - 80 : " + sum(count, 71, 80));
+	        System.out.println("81 - 90 : " + sum(count, 81, 90));
+	        System.out.println("91 - 100: " + sum(count, 91, 100));
+	    }
+
+	    // Helper function for Activity 5
+	    public static int sum(int[] count, int start, int end) {
+	        int total = 0;
+	        for (int i = start; i <= end; i++) {
+	            total += count[i];
+	        }
+	        return total;
+	    }
+	}
